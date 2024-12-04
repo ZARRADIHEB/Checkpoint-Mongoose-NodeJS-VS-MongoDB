@@ -224,9 +224,9 @@ const findByIdAndDelete = async (id) => {
 
 // Delete many documents
 
-const deletePeopleNamedMary = async () => {
+const deletePeopleNamedMary = async (name) => {
   try {
-    const result = await Person.deleteMany({ name: "Mary" });
+    const result = await Person.deleteMany({ name });
     console.log("Delete operation result:", result);
   } catch (err) {
     console.error("An error occurred while deleting documents:", err.message);
@@ -235,13 +235,13 @@ const deletePeopleNamedMary = async () => {
   }
 };
 
-// deletePeopleNamedMary();
+// deletePeopleNamedMary("iheb");
 
 //? Chain Search Query Helpers to Narrow Search Results
 
-const findPeopleWhoLikeBurritos = async () => {
+const findPeopleWhoLikeBurritos = async (food) => {
   try {
-    const data = await Person.find({ favoriteFoods: "burritos" }) // Find people who like burritos
+    const data = await Person.find({ favoriteFoods: food }) // Find people who like burritos
       .sort({ name: 1 }) // Sort by name in ascending order
       .limit(2) // Limit results to 2 documents
       .select("-age"); // Exclude the age field
@@ -256,4 +256,4 @@ const findPeopleWhoLikeBurritos = async () => {
 
 // Run the function
 
-// findPeopleWhoLikeBurritos();
+// findPeopleWhoLikeBurritos("burritos");
